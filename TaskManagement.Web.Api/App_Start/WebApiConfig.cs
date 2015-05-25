@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Dispatcher;
+using System.Web.Http.Routing;
+using TaskManagement.Web.Common;
+using TaskManagement.Web.Common.Routing;
 
 namespace TaskManagement.Web.Api
 {
@@ -9,16 +13,13 @@ namespace TaskManagement.Web.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            var constraintsResolver = new DefaultInlineConstraintResolver();
 
-            // Web API routes
-            config.MapHttpAttributeRoutes();
+            constraintsResolver.ConstraintMap.Add("apiVersionConstraint", typeof(ApiVersionConstraint));
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            config.MapHttpAttributeRoutes(constraintsResolver);
+
+            config.Services.Replace(typeof(IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
         }
     }
 }
