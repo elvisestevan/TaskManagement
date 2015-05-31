@@ -11,6 +11,7 @@ using TaskManagement.Web.Common.Routing;
 namespace TaskManagement.Web.Api.Controllers.v1
 {
     [ApiVersion1RoutePrefix("tasks")]
+    [UnitOfWorkActionFilter]
     public class TasksController : ApiController
     {
 
