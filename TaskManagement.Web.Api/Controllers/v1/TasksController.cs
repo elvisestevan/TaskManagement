@@ -14,20 +14,12 @@ namespace TaskManagement.Web.Api.Controllers.v1
     public class TasksController : ApiController
     {
 
-        private IDateTime dateTime;
-
-        public TasksController(IDateTime dateTime)
-        {
-            this.dateTime = dateTime;
-        }
-
-
         [Route("", Name = "AddTaskRouteV1")]
         [HttpPost]
         public Task AddTask(HttpRequestMessage request, Task newTask)
         {
             return new Task {
-                Subject = "In v1, newTask.Subject = " + newTask.Subject + dateTime.UtcNow.ToString()
+                Subject = "In v1, newTask.Subject = " + newTask.Subject
             };
         }
 
