@@ -1,15 +1,23 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TaskManagement.Web.Api.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TaskManagement.Web.Api.App_Start.NinjectWebCommon), "Stop")]
+using System;
+using System.Web;
+using System.Web.Http;
 
-namespace TaskManagement.Web.Api.App_Start
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+using Ninject;
+using Ninject.Web.Common;
+
+using WebActivatorEx;
+
+using TaskManagement.Web.Api;
+using TaskManagement.Web.Common;
+
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
+namespace TaskManagement.Web.Api
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
+    
 
     public static class NinjectWebCommon 
     {
@@ -22,7 +30,15 @@ namespace TaskManagement.Web.Api.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            IKernel container = null;
+            bootstrapper.Initialize(() =>
+            {
+                container = CreateKernel();
+                return container;
+            });
+
+            var resolver = new NinjectDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
         
         /// <summary>
@@ -61,6 +77,8 @@ namespace TaskManagement.Web.Api.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var containerConfigurator = new NinjectConfigurator();
+            containerConfigurator.Configure(kernel);
         }        
     }
 }
