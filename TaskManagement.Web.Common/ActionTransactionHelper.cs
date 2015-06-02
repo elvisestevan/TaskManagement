@@ -27,7 +27,7 @@ namespace TaskManagement.Web.Common
             }
         }
 
-        public void EndTransation(HttpActionExecutedContext filterContext)
+        public void EndTransaction(HttpActionExecutedContext filterContext)
         {
             if (!CurrentSessionContext.HasBind(_sessionFactory)) return;
 
