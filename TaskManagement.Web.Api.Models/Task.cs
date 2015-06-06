@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TaskManagement.Web.Api.Models
 {
-    public class Task
+    public class Task : ILinkContaining
     {
         private List<Link> _links;
 

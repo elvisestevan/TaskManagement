@@ -25,11 +25,11 @@ namespace TaskManagement.Web.Api.Controllers.v1
 
         [Route("", Name = "AddTaskRouteV1")]
         [HttpPost]
-        public Task AddTask(HttpRequestMessage request, NewTask newTask)
+        public IHttpActionResult AddTask(HttpRequestMessage request, NewTask newTask)
         {
             var task = _addTaskMaintenanceProcessor.AddTask(newTask);
-
-            return task;
+            var result = new TaskCreatedActionResult(request, task);
+            return result;
         }
 
     }
