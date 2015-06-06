@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TaskManagement.Web.Api.MaintenanceProcessing;
 using TaskManagement.Web.Api.Models;
 using TaskManagement.Web.Common;
 using TaskManagement.Web.Common.Routing;
@@ -15,13 +16,20 @@ namespace TaskManagement.Web.Api.Controllers.v1
     public class TasksController : ApiController
     {
 
+        private readonly IAddTaskMaintenanceProcessor _addTaskMaintenanceProcessor;
+
+        public TasksController(IAddTaskMaintenanceProcessor addTaskMaintenanceProcessor)
+        {
+            _addTaskMaintenanceProcessor = addTaskMaintenanceProcessor;
+        }
+
         [Route("", Name = "AddTaskRouteV1")]
         [HttpPost]
-        public Task AddTask(HttpRequestMessage request, Task newTask)
+        public Task AddTask(HttpRequestMessage request, NewTask newTask)
         {
-            return new Task {
-                Subject = "In v1, newTask.Subject = " + newTask.Subject
-            };
+            var task = _addTaskMaintenanceProcessor.AddTask(newTask);
+
+            return task;
         }
 
     }

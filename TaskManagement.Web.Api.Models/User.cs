@@ -11,9 +11,9 @@ namespace TaskManagement.Web.Api.Models
         private List<Link> _links;
 
         public long UserId { get; set; }
-        private string Username { get; set; }
-        private string Firstname { get; set; }
-        private string Lastname { get; set; }
+        public string Username { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
         public List<Link> Links
         {
             get { return _links ?? (_links = new List<Link>()); }

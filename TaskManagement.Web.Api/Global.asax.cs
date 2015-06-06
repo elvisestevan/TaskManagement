@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 using TaskManagement.Common.Logging;
+using TaskManagement.Common.TypeMapping;
 using TaskManagement.Web.Common;
 
 namespace TaskManagement.Web.Api
@@ -14,6 +15,8 @@ namespace TaskManagement.Web.Api
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            new AutoMapperConfigurator().Configure(WebContainerManager.GetAll<IAutoMapperTypeConfigurator>());
         }
 
         protected void Application_Error()

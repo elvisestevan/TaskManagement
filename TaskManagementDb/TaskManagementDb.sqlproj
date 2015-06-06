@@ -7,13 +7,13 @@
     <Name>TaskManagementDb</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{b4bb29be-ff3e-4ab8-ba11-34482104d6f4}</ProjectGuid>
+    <ProjectGuid>{f253821d-87e1-486c-990c-c9342bd168f4}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>TaskManagement</RootNamespace>
-    <AssemblyName>TaskManagement</AssemblyName>
+    <RootNamespace>TaskManagementDb</RootNamespace>
+    <AssemblyName>TaskManagementDb</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -23,8 +23,6 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultSchema>dbo</DefaultSchema>
-    <PermissionSet>SAFE</PermissionSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,16 +57,16 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables" />
     <Folder Include="Scripts" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\Task.sql" />
+    <Build Include="Tables\Status.sql" />
+    <Build Include="Tables\TaskUser.sql" />
     <None Include="Scripts\ReferenceData.sql" />
     <None Include="Scripts\TestData.sql" />
-    <None Include="Tables\Status.sql" />
-    <None Include="Tables\Task.sql" />
-    <None Include="Tables\TaskUser.sql" />
-    <None Include="Tables\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
