@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using TaskManagement.Common.Logging;
 using TaskManagement.Common.TypeMapping;
+using TaskManagement.Web.Api.Security;
 using TaskManagement.Web.Common;
 
 namespace TaskManagement.Web.Api
@@ -15,8 +16,15 @@ namespace TaskManagement.Web.Api
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            new AutoMapperConfigurator().Configure(WebContainerManager.GetAll<IAutoMapperTypeConfigurator>());
+            RegisterHandlers();
+            new AutoMapperConfigurator().Configure(
+            WebContainerManager.GetAll<IAutoMapperTypeConfigurator>());
+        }
+        private void RegisterHandlers()
+        {
+            var logManager = WebContainerManager.Get<ILogManager>();
+            GlobalConfiguration.Configuration.MessageHandlers.Add(
+            new BasicAuthenticationMessageHandler(logManager, WebContainerManager.Get<IBasicSecurityService>()));
         }
 
         protected void Application_Error()

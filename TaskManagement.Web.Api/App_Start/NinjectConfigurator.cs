@@ -21,6 +21,7 @@ using TaskManagement.Data.QueryProcessors;
 using TaskManagement.Common.TypeMapping;
 using TaskManagement.Web.Api.AutoMappingConfiguration;
 using TaskManagement.Web.Api.MaintenanceProcessing;
+using TaskManagement.Web.Api.Security;
 
 namespace TaskManagement.Web.Api
 {
@@ -40,6 +41,7 @@ namespace TaskManagement.Web.Api
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
             container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
             container.Bind<IAddTaskMaintenanceProcessor>().To<AddTaskMaintenanceProcessor>().InRequestScope();
+            container.Bind<IBasicSecurityService>().To<BasicSecurityService>().InSingletonScope();
         }
 
         private void ConfigureLog4Net(IKernel container)

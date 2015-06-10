@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TaskManagement.Common;
 using TaskManagement.Web.Api.MaintenanceProcessing;
 using TaskManagement.Web.Api.Models;
 using TaskManagement.Web.Common;
@@ -25,6 +26,7 @@ namespace TaskManagement.Web.Api.Controllers.v1
 
         [Route("", Name = "AddTaskRouteV1")]
         [HttpPost]
+        [Authorize(Roles = Constants.RoleNames.Manager)]
         public IHttpActionResult AddTask(HttpRequestMessage request, NewTask newTask)
         {
             var task = _addTaskMaintenanceProcessor.AddTask(newTask);
