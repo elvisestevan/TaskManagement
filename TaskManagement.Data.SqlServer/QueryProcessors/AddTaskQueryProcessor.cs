@@ -5,7 +5,7 @@ using TaskManagement.Common.Security;
 using TaskManagement.Data.Entities;
 using TaskManagement.Data.Exceptions;
 using TaskManagement.Data.QueryProcessors;
-using TaskManagement.Web.Common;
+using TaskManagement.Common;
 
 namespace TaskManagement.Data.SqlServer.QueryProcessors
 {

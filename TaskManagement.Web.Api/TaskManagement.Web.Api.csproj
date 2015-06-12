@@ -126,13 +126,20 @@
     <Compile Include="AutoMappingConfiguration\UserEntityToUserAutoMapperTypeConfigurator.cs" />
     <Compile Include="AutoMappingConfiguration\UserToUserEntityAutoMapperTypeConfigurator.cs" />
     <Compile Include="Controllers\v1\TasksController.cs" />
+    <Compile Include="Controllers\v1\TaskWorkflowController.cs" />
     <Compile Include="Controllers\v2\TasksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MaintenanceProcessing\AddTaskMaintenanceProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\CompleteTaskWorkflowProcessor.cs" />
     <Compile Include="MaintenanceProcessing\IAddTaskMaintenanceProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\ICompleteTaskWorkflowProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\IReactivateTaskWorkflowProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\IStartTaskWorkflowProcessor.cs" />
     <Compile Include="MaintenanceProcessing\LocationLinkCalculator.cs" />
+    <Compile Include="MaintenanceProcessing\ReactivateTaskWorkflowProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\StartTaskWorkflowProcessor.cs" />
     <Compile Include="MaintenanceProcessing\TaskCreatedActionResult.cs" />
     <Compile Include="Models\NewTask.cs" />
     <Compile Include="Models\NewTaskV2.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagement.Web.Common
+namespace TaskManagement.Common
 {
     public class DateTimeAdapter : IDateTime
     {
