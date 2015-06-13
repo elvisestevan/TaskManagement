@@ -22,6 +22,7 @@ using TaskManagement.Common.TypeMapping;
 using TaskManagement.Web.Api.AutoMappingConfiguration;
 using TaskManagement.Web.Api.MaintenanceProcessing;
 using TaskManagement.Web.Api.Security;
+using TaskManagement.Web.Api.InquiryProcessing;
 
 namespace TaskManagement.Web.Api
 {
@@ -47,6 +48,7 @@ namespace TaskManagement.Web.Api
             container.Bind<IStartTaskWorkflowProcessor>().To<StartTaskWorkflowProcessor>().InRequestScope();
             container.Bind<ICompleteTaskWorkflowProcessor>().To<CompleteTaskWorkflowProcessor>().InRequestScope();
             container.Bind<IReactivateTaskWorkflowProcessor>().To<ReactivateTaskWorkflowProcessor>().InRequestScope();
+            container.Bind<ITaskByIdInquiryProcessor>().To<TaskByIdInquiryProcessor>().InRequestScope();
         }
 
         private void ConfigureLog4Net(IKernel container)
