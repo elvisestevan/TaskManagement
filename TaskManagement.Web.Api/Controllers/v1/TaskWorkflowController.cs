@@ -4,6 +4,7 @@ using TaskManagement.Web.Api.MaintenanceProcessing;
 using TaskManagement.Web.Api.Models;
 using TaskManagement.Web.Common;
 using TaskManagement.Web.Common.Routing;
+using TaskManagement.Web.Common.Security;
 
 namespace TaskManagement.Web.Api.Controllers.v1
 {
@@ -41,6 +42,7 @@ namespace TaskManagement.Web.Api.Controllers.v1
 
         [HttpPost]
         [Route("tasks/{taskId:long}/reactivations", Name = "ReactivateTaskRoute")]
+        [UserAudit]
         public Task ReactivateTask(long taskId)
         {
             var task = _reactivateTaskWorkflowProcessor.ReactivateTask(taskId);
